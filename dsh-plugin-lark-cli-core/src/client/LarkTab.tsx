@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { Button, StateDot, Tag } from '@deepseek-ai/dsh-client-ui-primitives'
 import type { StateDotState, TagTone } from '@deepseek-ai/dsh-client-ui-primitives'
 import { isActivePhase, type ErrorInfo, type IntegrationStatus, type Job, type JobKind, type JobPhase } from '../types.ts'
@@ -56,6 +56,15 @@ export function LarkTab({ t }: LarkTabProps): ReactNode {
   const [showLog, setShowLog] = useState(false)
   const [showQr, setShowQr] = useState(false)
   const [purge, setPurge] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  useEffect(() => {
+    if (!menuOpen) return
+    const close = (): void => { setMenuOpen(false) }
+    const onKey = (e: KeyboardEvent): void => { if (e.key === 'Escape') close() }
+    document.addEventListener('click', close)
+    document.addEventListener('keydown', onKey)
+    return () => { document.removeEventListener('click', close); document.removeEventListener('keydown', onKey) }
+  }, [menuOpen])
   const [dismissed, setDismissed] = useState<string | null>(null)
   if (status === null) {
     return (
@@ -171,7 +180,16 @@ export function LarkTab({ t }: LarkTabProps): ReactNode {
           ? <Button variant="primary" size="sm" disabled={disabled} onClick={() => { void startUpdate(true) }}>{t('updateBtn')}</Button>
           : cli.update === 'up-to-date' && <Tag tone="success">{t('updateLatest')}</Tag>}
         {cli.belowMinVersion && <span className={css.warn}>{t('belowMin', { min: cli.minVersion })}</span>}
-        {cli.managed && <Button variant="outline" size="sm" disabled={busy} onClick={() => { setPurge(false); setPending({ kind: 'uninstall' }) }}>{t('uninstallBtn')}</Button>}
+        {cli.managed && (
+          <div className={css.more}>
+            <Button variant="ghost" size="sm" aria-label={t('more')} aria-haspopup="menu" aria-expanded={menuOpen} disabled={busy} onClick={(e) => { e.stopPropagation(); setMenuOpen(v => !v) }}>…</Button>
+            {menuOpen && (
+              <div className={css.menu} role="menu">
+                <button type="button" role="menuitem" className={css.menuItemDanger} onClick={() => { setMenuOpen(false); setPurge(false); setPending({ kind: 'uninstall' }) }}>{t('uninstallBtn')}</button>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     )
   }

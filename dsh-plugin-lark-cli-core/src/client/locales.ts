@@ -79,6 +79,7 @@ export const zh = {
   hideLog: '收起详情',
   manualCommand: '也可以手动执行：',
   dismiss: '关闭',
+  more: '更多',
 
   userAuthorized: '已授权：{name}',
   userAuthorizedNoName: '已授权',
@@ -186,6 +187,7 @@ export const en: Record<LarkKey, string> = {
   hideLog: 'Hide details',
   manualCommand: 'Or run it yourself:',
   dismiss: 'Dismiss',
+  more: 'More',
 
   userAuthorized: 'Authorized: {name}',
   userAuthorizedNoName: 'Authorized',

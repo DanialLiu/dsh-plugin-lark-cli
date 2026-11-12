@@ -29,3 +29,7 @@
 .check { display: flex; gap: 8px; align-items: flex-start; cursor: pointer; }
 .check input { margin-top: 3px; }
 .bannerOk { padding: 10px 12px; border-radius: var(--dsw-radius-md); border: 0.5px solid var(--dsw-alias-border-l3); background: var(--dsw-alias-settings-card-fill); color: var(--dsw-alias-state-success-primary); }
+.more { position: relative; margin-left: auto; }
+.menu { position: absolute; right: 0; top: calc(100% + 4px); z-index: 10; min-width: 160px; padding: 4px; border-radius: var(--dsw-radius-md); border: 0.5px solid var(--dsw-alias-border-l3); background: var(--dsw-alias-bg-base); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18); }
+.menuItemDanger { display: block; width: 100%; text-align: left; padding: 6px 10px; border: 0; border-radius: var(--dsw-radius-sm); background: none; color: var(--dsw-alias-state-error-primary); font: inherit; cursor: pointer; }
+.menuItemDanger:hover { background: var(--dsw-alias-settings-card-fill); }
