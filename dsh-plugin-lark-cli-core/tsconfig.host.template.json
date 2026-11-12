@@ -1,0 +1,7 @@
+{
+  // Host half: type-checks against the sources of the DSH checkout (DSH_ROOT).
+  "extends": "<DSH_ROOT>/tsconfig.host.json",
+  "compilerOptions": { "noEmit": true, "composite": false, "incremental": false, "rootDir": "<COMMON_ROOT>", "typeRoots": ["<DSH_ROOT>/node_modules/@types"], "types": ["node"] },
+  "include": ["src/**/*.ts"],
+  "exclude": ["tests", "src/client"]
+}

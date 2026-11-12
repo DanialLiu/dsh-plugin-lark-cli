@@ -1,0 +1,9 @@
+{
+  "ok": false,
+  "error": {
+    "type": "config",
+    "subtype": "not_configured",
+    "message": "not configured",
+    "hint": "run `lark-cli config init --new` in the background. It blocks and outputs a verification URL — retrieve the URL and open it in a browser to complete setup."
+  }
+}

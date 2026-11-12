@@ -1,0 +1,12 @@
+{
+  "action": "update_available",
+  "auto_update": true,
+  "changelog": "https://github.com/larksuite/cli/blob/main/CHANGELOG.md",
+  "current_version": "1.0.98",
+  "latest_version": "1.0.100",
+  "message": "lark-cli 1.0.98 → 1.0.100 available",
+  "ok": true,
+  "previous_version": "1.0.98",
+  "skills_status": { "current": "1.0.98", "in_sync": true, "layout": "separate", "official": 28, "target": "1.0.98", "updated": 28 },
+  "url": "https://github.com/larksuite/cli/releases/tag/v1.0.100"
+}

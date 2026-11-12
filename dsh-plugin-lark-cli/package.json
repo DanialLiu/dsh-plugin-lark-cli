@@ -1,0 +1,40 @@
+{
+  "name": "dsh-plugin-lark-cli",
+  "version": "0.1.0",
+  "description": "Feishu / Lark for DeepSeek Harness: install, bind and keep the official lark-cli up to date from the Plugins page.",
+  "type": "module",
+  "exports": {
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./locale/*.json": "./locale/*.json",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "cordis.patch.yml",
+    "locale/*.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "feishu",
+    "lark",
+    "lark-cli"
+  ],
+  "license": "MIT",
+  "engines": {
+    "dsh": ">=0.2.2-rc.1 <0.3.0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "dependencies": {
+    "dsh-plugin-lark-cli-core": "0.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

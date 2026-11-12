@@ -1,0 +1,11 @@
+{
+  "appId": "cli_test0000000000",
+  "brand": "feishu",
+  "credentialSource": "local",
+  "defaultAs": "user",
+  "identities": {
+    "bot": { "status": "ready", "available": true, "message": "Bot identity: ready" },
+    "user": { "status": "valid", "available": true, "userName": "测试用户", "openId": "ou_test", "tokenStatus": "valid", "message": "User identity: ready" }
+  },
+  "identity": "user"
+}

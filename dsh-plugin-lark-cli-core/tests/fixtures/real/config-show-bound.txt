@@ -1,0 +1,13 @@
+{
+  "appId": "cli_test0000000000",
+  "appSecret": "****",
+  "brand": "feishu",
+  "dpopMode": "preferred",
+  "lang": "zh",
+  "profile": "cli_test0000000000",
+  "profileSource": "config",
+  "users": "(no logged-in users)",
+  "workspace": "local"
+}
+
+Config file path: /home/test/.lark-cli/config.json

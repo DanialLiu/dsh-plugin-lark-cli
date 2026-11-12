@@ -1,0 +1,9 @@
+{
+  "action": "up_to_date",
+  "auto_update": true,
+  "current_version": "1.0.100",
+  "latest_version": "1.0.100",
+  "message": "lark-cli 1.0.100 is up to date",
+  "ok": true,
+  "skills_status": { "current": "1.0.100", "in_sync": true, "layout": "separate", "official": 28, "target": "1.0.100", "updated": 28 }
+}

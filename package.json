@@ -1,0 +1,17 @@
+{
+  "name": "dsh-plugin-lark-cli-workspace",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "dsh-plugin-lark-cli",
+    "dsh-plugin-lark-cli-core"
+  ],
+  "scripts": {
+    "test": "npm test --workspace dsh-plugin-lark-cli-core",
+    "build": "npm run build --workspace dsh-plugin-lark-cli-core",
+    "typecheck": "npm run typecheck --workspace dsh-plugin-lark-cli-core"
+  },
+  "devDependencies": {
+    "vitest": "^5.1.0"
+  }
+}

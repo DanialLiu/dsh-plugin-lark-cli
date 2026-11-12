@@ -1,0 +1,9 @@
+{
+  "appId": "cli_test0000000000",
+  "brand": "feishu",
+  "identities": {
+    "bot": { "status": "error", "available": false, "message": "Bot identity: app not found or secret invalid" },
+    "user": { "status": "missing", "available": false, "message": "User identity: missing (no user logged in)" }
+  },
+  "identity": "bot"
+}

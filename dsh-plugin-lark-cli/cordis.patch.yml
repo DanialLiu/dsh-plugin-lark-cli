@@ -1,0 +1,6 @@
+# dsh-plugin-lark-cli: the layer applied when a profile lists this bundle.
+# The row mounts the implementation package: its host half serves `/api/lark-cli/*`, and its browser half adds the
+# Feishu panel to this bundle's page under Plugins.
+- insert:
+    - id: lark-cli
+      name: dsh-plugin-lark-cli-core

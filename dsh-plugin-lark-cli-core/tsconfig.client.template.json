@@ -1,0 +1,20 @@
+{
+  // Browser half: type-checks against the DSH client compiler shape (React JSX, DOM lib). Run with:
+  //   npm run typecheck
+  "extends": "<DSH_ROOT>/tsconfig.base.client.json",
+  "compilerOptions": {
+    "noEmit": true, "composite": false, "incremental": false, "rootDir": "<COMMON_ROOT>",
+    "typeRoots": ["<DSH_ROOT>/scripts/types", "<DSH_ROOT>/node_modules/@types"],
+    "paths": {
+      "@deepseek-ai/cordis": ["<DSH_ROOT>/vendor/cordis/src/index.ts"],
+      "@deepseek-ai/dsh-client-locale/client": ["<DSH_ROOT>/packages/client/locale/lib/types/client/index.d.ts"],
+      "@deepseek-ai/dsh-client-ui-renderer/client": ["<DSH_ROOT>/packages/client/ui-renderer/lib/types/client/index.d.ts"],
+      "@deepseek-ai/dsh-client-ui-plugin-manager/client": ["<DSH_ROOT>/packages/client/ui-plugin-manager/lib/types/client/index.d.ts"],
+      "@deepseek-ai/dsh-client-ui-slots": ["<DSH_ROOT>/packages/client/ui-slots/src/index.ts"],
+      "react": ["<DSH_ROOT>/node_modules/@types/react"],
+      "react/jsx-runtime": ["<DSH_ROOT>/node_modules/@types/react/jsx-runtime"],
+      "@deepseek-ai/dsh-client-ui-primitives": ["<DSH_ROOT>/packages/client/ui-primitives/src/index.ts"]
+    }
+  },
+  "include": ["src/client/**/*.ts", "src/client/**/*.tsx", "src/types.ts"]
+}
