@@ -80,6 +80,9 @@ export function LarkTab({ t }: LarkTabProps): ReactNode {
   const jobActive = job !== null && isActivePhase(job.phase)
   const installed = status.cli !== null
   const bound = status.binding !== null
+  const jobShown = job !== null && job.phase !== 'succeeded' && dismissed !== job.id
+  /** The authorize job's own panel carries step 3 (with the open-browser button), so the plain step-3 card is hidden meanwhile. */
+  const authJobShown = jobShown && (job.stage === 'authorize' || job.kind === 'authorize')
   const tag = stateTag(t, status)
 
   /** Run a request; a confirmation_required answer opens the confirm panel instead of failing. */
@@ -312,7 +315,7 @@ export function LarkTab({ t }: LarkTabProps): ReactNode {
         {pending !== null && pending.kind === 'reconfigure' && confirmBox()}
       </section>
 
-      {bound && (
+      {bound && !authJobShown && (
         <section className={css.card}>
           <div className={css.cardHead}><h3 className={css.cardTitle}>{t('step3')}</h3>
             {user.status === 'authorized' ? <StateDot state="done" /> : null}</div>
@@ -327,7 +330,7 @@ export function LarkTab({ t }: LarkTabProps): ReactNode {
         </section>
       )}
 
-      {job !== null && job.phase !== 'succeeded' && dismissed !== job.id && jobPanel(job)}
+      {jobShown && job !== null && jobPanel(job)}
 
     </div>
   )

@@ -1,6 +1,6 @@
 {
   "name": "dsh-plugin-lark-cli",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Feishu / Lark for DeepSeek Harness: install, bind and keep the official lark-cli up to date from the Plugins page.",
   "type": "module",
   "exports": {
@@ -32,7 +32,7 @@
     }
   },
   "dependencies": {
-    "dsh-plugin-lark-cli-core": "0.1.1"
+    "dsh-plugin-lark-cli-core": "0.1.2"
   },
   "publishConfig": {
     "access": "public"
