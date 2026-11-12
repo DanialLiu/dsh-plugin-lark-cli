@@ -49,4 +49,13 @@ describe('uninstall', () => {
     await expect(h.core.uninstall({ confirm: true })).rejects.toMatchObject({ info: { code: 'not_writable' } })
     expect(existsSync(h.fake.bin)).toBe(true)
   })
+  it('never removes an install prefix that contains the home, DSH home or agents directory', async () => {
+    for (const where of ['home', 'dshHome', 'agentsHome'] as const) {
+      const { h, bin } = managedHarness()
+      // a protected directory lives inside the prefix (as when installPrefix is configured as an ancestor of it)
+      h.core.deps[where] = join(h.prefix, 'inside')
+      await expect(h.core.uninstall({ confirm: true })).rejects.toMatchObject({ info: { code: 'not_writable' } })
+      expect(existsSync(bin)).toBe(true)
+    }
+  })
 })

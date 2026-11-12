@@ -38,7 +38,9 @@ async function installPackage(deps: Deps, installer: Installer, dir: string, ver
     : [...installer.prefix, 'install', '--prefix', dir, spec, ...(registry ? ['--registry', registry] : [])]
   if (installer.kind === 'pnpm') {
     // pnpm refuses dependency build scripts by default; lark-cli's postinstall is what downloads its binary.
-    await writeFile(join(dir, 'pnpm-workspace.yaml'), `allowBuilds:\n  "${PACKAGE}": true\n`)
+    // The tree is built in a staging directory and renamed into place, so it must be relocatable: pnpm's default
+    // layout uses absolute-path junctions on Windows, which dangle after the rename. `hoisted` makes real directories.
+    await writeFile(join(dir, 'pnpm-workspace.yaml'), `nodeLinker: hoisted\nallowBuilds:\n  "${PACKAGE}": true\n`)
   }
   ctx.log(`installing ${spec} (${installer.description}); this downloads the program and can take a minute or two`)
   const tail: string[] = []

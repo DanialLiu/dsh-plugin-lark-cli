@@ -1,6 +1,6 @@
 /** Operations behind the HTTP routes: validation, confirmation gates, job start. No HTTP here, so it tests cleanly. */
 import { rm } from 'node:fs/promises'
-import { join, sep } from 'node:path'
+import { join, resolve, sep } from 'node:path'
 import type { Deps } from './deps.ts'
 import { installPrefixOf } from './deps.ts'
 import { runAuthorize, runLogout, userIdentityReady } from './auth.ts'
@@ -20,6 +20,9 @@ export interface BindBody {
   replace?: unknown
   confirm?: unknown
 }
+
+/** Whether `child` is `parent` itself or lies inside it. */
+const within = (parent: string, child: string): boolean => child === parent || child.startsWith(parent.endsWith(sep) ? parent : parent + sep)
 
 export class LarkCore {
   readonly jobs: JobManager
@@ -140,6 +143,12 @@ export class LarkCore {
     const prefix = installPrefixOf(this.deps)
     if (!cli.managed || prefix.length === 0 || !cli.path.startsWith(prefix + sep)) {
       throw new ApiError({ code: 'not_writable', message: 'this lark-cli was not installed by this page' })
+    }
+    // `installPrefix` is configurable and removed recursively: never a directory that holds the user's other data.
+    const protectedDirs = [this.deps.home, this.deps.dshHome, this.deps.agentsHome, resolve(sep)].map(dir => resolve(dir))
+    const target = resolve(prefix)
+    if (protectedDirs.some(dir => within(target, dir))) {
+      throw new ApiError({ code: 'not_writable', message: 'the install location is a directory that also holds other data, so it is not removed' })
     }
     const purge = body.purge === true
     if (body.confirm !== true) {
